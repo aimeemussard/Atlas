@@ -1,0 +1,22 @@
+<th:block th:fragment="infobar">
+        <div class="flex w-full justify-evenly items-center border-neutral-500 border-y-2 py-2">
+                <div>
+                        <p th:text="${entries.value.last_updated}"></p>
+                </div>
+                <div class="flex">
+                        <p th:text="${entries.value.type}"></p>
+                </div>
+                <div class="flex">
+                        <p class="mr-1">Lignes :</p>
+                        <p th:text="${entries.value.lines}"></p>
+                </div>
+                <div class="flex">
+                        <p class="mr-1">Mots :</p>
+                        <p th:text="${entries.value.words}"></p>
+                </div>
+                <div class="flex">
+                        <p class="mr-1">Taille :</p>
+                        <p th:text="${entries.value.size}"></p>
+                </div>
+        </div>
+</th:block>

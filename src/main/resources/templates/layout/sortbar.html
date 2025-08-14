@@ -1,0 +1,28 @@
+<th:block th:fragment="sortbar">
+        <ul class="flex justify-between w-full px-4">
+                <li class="flex items-center">
+                        <th:block th:switch="${direction}">
+                                <img th:case="'asc'" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                                <img th:case="'desc'" th:src="@{/asset/down.svg}" class="h-7 w-7"/>
+                                <img th:case="*" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                        </th:block>
+                        <a th:href="@{${fullPath}(sort='name', order=${direction} == 'asc' ? 'desc' : 'asc')}" class="text-lg">Nom</a>
+                </li>
+                <li class="flex items-center">
+                        <th:block th:switch="${direction}">
+                                <img th:case="'asc'" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                                <img th:case="'desc'" th:src="@{/asset/down.svg}" class="h-7 w-7"/>
+                                <img th:case="*" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                        </th:block>
+                        <a th:href="@{${fullPath}(sort='last_updated', order=${direction} == 'asc' ? 'desc' : 'asc')}" class="text-lg">Date de modification</a>
+                </li>
+                <li class="flex items-center">
+                        <th:block th:switch="${direction}">
+                                <img th:case="'asc'" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                                <img th:case="'desc'" th:src="@{/asset/down.svg}" class="h-7 w-7"/>
+                                <img th:case="*" th:src="@{/asset/up.svg}" class="h-7 w-7"/>
+                        </th:block>
+                        <a th:href="@{${fullPath}(sort='size', order=${direction} == 'asc' ? 'desc' : 'asc')}" class="text-lg">Taille</a>
+                </li>
+        </ul>
+</th:block>

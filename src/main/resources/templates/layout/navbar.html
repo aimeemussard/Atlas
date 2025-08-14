@@ -1,0 +1,7 @@
+<th:block th:fragment="navbar">
+    <form method="get" th:action="@{${fullPath}(search='true')}" class="flex items-center w-full px-4 py-4 ">
+        <img th:src="@{/asset/loupe.png}" alt="loupe" class="h-6 w-6 absolute left-[2em]">
+        <input type="text" list="folder" name="search" placeholder="Rechercher par nom" class="border-2 rounded-l-xl px-10 py-2 ml-1 w-[35vw] outline-none bg-white">
+        <button type="submit" class="w-13 px-10 py-2 border-2 border-l-0 rounded-r-xl outline-none bg-white">Rechercher</button>
+    </form>
+</th:block>

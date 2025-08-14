@@ -1,0 +1,38 @@
+<th:block th:fragment="sidebar">
+  <th:block th:insert="this :: treeView(${fullTree}, '', ${path})"/>
+</th:block>
+
+<th:block th:fragment="treeView(folderMap, parentPath, currentPath)">
+  <ul>
+    <th:block th:each="entry : ${folderMap.entrySet()}">
+
+      <th:block th:if="${entry.key != 'files' and entry.key != 'file'}">
+        <th:block th:with="subMap=${entry.value}">
+          <th:block th:if="${subMap instanceof T(java.util.Map)}">
+
+            <th:block th:with="fullPath=${parentPath == '' ? entry.key : parentPath + '/' + entry.key}">
+              <li class="text-red-700 ml-2">
+                <a th:href="@{'/H5AI/' + ${fullPath}}" th:text="${entry.key}"></a>
+
+                <th:block th:if="${#strings.contains(currentPath + '/', fullPath + '/')}">
+                  <th:block th:insert="this :: treeView(${subMap}, ${fullPath}, ${currentPath})"/>
+                </th:block>
+              </li>
+            </th:block>
+
+          </th:block>
+        </th:block>
+      </th:block>
+
+      <th:block th:if="${entry.key == 'files'}">
+        <th:block th:each="file : ${entry.value}">
+          <li class="text-black ml-4">
+            <a th:href="@{'/H5AI/' + ${parentPath} + '/' + ${file}}"
+               th:text="${file}"></a>
+          </li>
+        </th:block>
+      </th:block>
+
+    </th:block>
+  </ul>
+</th:block>

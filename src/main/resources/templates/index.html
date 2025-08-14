@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <link rel="stylesheet" th:href="@{/css/output.css}">
+        </head>
+<body>
+        <div th:insert="layout/navbar :: navbar" class="w-[100vw] h-[10vh] border-b-2 border-black bg-white fixed overflow-hidden overflow-x-hidden top-0 z-[1]">
+        </div>
+        <div th:insert="layout/sidebar :: sidebar" class="fixed left-0 top-0 overflow-x-hidden w-[25vw] h-[100vh] border-r-2 border-black bg-white pt-[10vh]"></div>
+        <main class="h-auto w-full pl-[25vw] pt-[10vh]">
+                <div th:insert="layout/sortbar :: sortbar" class="fixed h-10 w-[75vw] border-black border-b-2 bg-white content-center"></div>
+                <div class="mt-10">
+                        <div class="flex items-center w-full px-4 ">
+                                <div class="flex mr-2 my-1">
+                                        <a th:if="${backPath != ''}" th:href="@{{path}?action=back(path=${backPath})}"><img th:src="@{/asset/left.svg}" class="h-8 w-8 p-1 bg-neutral-200 rounded-full mx-1"/></a>
+                                        <img th:if="${backPath == ''}" th:src="@{/asset/left.svg}" class="h-8 w-8 p-1 bg-neutral-100 rounded-full mx-1"/>
+                                        <a th:if="${forwardPath != ''}" th:href="@{{path}?action=forward(path=${forwardPath})}"><img th:src="@{/asset/right.svg}" class="h-8 w-8 p-1 bg-neutral-200 rounded-full mx-1"/></a>
+                                        <img th:if="${forwardPath == ''}" th:src="@{/asset/right.svg}" class="h-8 w-8 p-1 bg-neutral-100 rounded-full mx-1"/>
+                                </div>
+                                <th:block th:each="entries, index : ${breadcrumb}">
+                                        <th:block th:each="entry : ${entries}">
+                                                <a th:href="@{/{path}(path=${entry.value.substring(0, entry.value.length()-1)})}" th:text="${entry.key}" class="text-lg">test</a>
+                                        </th:block>
+                                        <th:block th:if="${index.index != breadcrumb.size()-1}">
+                                                <img th:if="${forwardPath == ''}" th:src="@{/asset/right.svg}" class="h-5 w-5 mx-1"/>
+                                        </th:block>
+                                </th:block>
+                        </div>
+                        
+                        <div th:if="${results.size() > 0}" th:each="entries, index : ${results.entrySet()}">
+                                <th:block th:if="${entries.key == 'folders'}">
+                                        <div th:each="folder : ${entries.value}">
+                                                <a th:href="@{{subpath}(subpath=${folder.path})}" class="flex items-center">
+                                                        <img th:src="@{/asset/folder.svg}" class="h-7 w-7"/>
+                                                        <p class="text-2xl text-red-700 ml-2" th:text="${folder.name}"></p>
+                                                </a>        
+                                        </div>
+                                </th:block>
+                                <th:block th:if="${entries.key == 'files'}">
+                                        <div th:each="file : ${entries.value}">
+                                                <a th:href="@{{subpath}(subpath=${file.path})}" class="text-black flex justify-between items-center">
+                                                        <div class="flex items-center">
+                                                                <th:block th:switch="${file.type}">
+                                                                        <img th:case="'text/html'" th:src="@{/asset/html.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/javascript'" th:src="@{/asset/javascript.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/css'" th:src="@{/asset/css.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/plain'" th:src="@{/asset/file.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/markdown'" th:src="@{/asset/readme.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/php'" th:src="@{/asset/php.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/png'" th:src="@{/asset/png.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/jpg'" th:src="@{/asset/jpg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/jpeg'" th:src="@{/asset/jpg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/svg+xml'" th:src="@{/asset/svg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="*" th:src="@{/asset/file.svg}" class="h-7 w-7"/>
+                                                                </th:block>
+                                                                <p th:text="${file.name}" class="ml-2"></p>
+                                                        </div>
+                                                        <p th:text="${file.last_updated}"></p>
+                                                        <th:block th:if="${file.size < 1000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size}"></p>
+                                                                        <th:block th:if="${file.size > 1}">
+                                                                                <p>octets</p>
+                                                                        </th:block>
+                                                                        <th:block th:if="${file.size <= 1}">
+                                                                                <p>octet</p>
+                                                                        </th:block>
+                                                                </div>
+                                                        </th:block>
+                                                        <th:block th:if="${file.size > 1000 && file.size < 1000000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size/1000}"></p>
+                                                                        <p>Ko</p>
+                                                                </div>
+                                                        </th:block>
+                                                        <th:block th:if="${file.size > 1000000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size/1000000}"></p>
+                                                                        <p>Mo</p>
+                                                                </div>
+                                                        </th:block>
+                                                </a>
+                                        </div>
+                                </th:block>
+                        </div>
+
+                        <div th:unless="${results.size() > 0}" th:each="entries, index : ${map.entrySet()}" class="px-4">
+                                <th:block th:if="${entries.key == 'folders'}">
+                                        <div th:each="folder : ${entries.value}">
+                                                <a th:href="@{{subpath}(subpath=${folder.path})}" class="flex my-2 items-center">
+                                                        <img th:src="@{/asset/folder.svg}" class="h-7 w-7"/>
+                                                        <p class="text-2xl text-red-700 ml-2" th:text="${folder.name}"></p>
+                                                </a>        
+                                        </div>
+                                </th:block>
+                                <th:block th:if="${entries.key == 'files'}">
+                                        <div th:each="file : ${entries.value}">
+                                                <a th:href="@{{subpath}(subpath=${file.path})}" class="text-black flex justify-between my-2 items-center">
+                                                        <div class="flex items-center">
+                                                                <th:block th:switch="${file.type}">
+                                                                        <img th:case="'text/html'" th:src="@{/asset/html.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/javascript'" th:src="@{/asset/javascript.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/css'" th:src="@{/asset/css.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/plain'" th:src="@{/asset/file.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/markdown'" th:src="@{/asset/readme.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'text/php'" th:src="@{/asset/php.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/png'" th:src="@{/asset/png.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/jpg'" th:src="@{/asset/jpg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/jpeg'" th:src="@{/asset/jpg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="'image/svg+xml'" th:src="@{/asset/svg.svg}" class="h-7 w-7"/>
+                                                                        <img th:case="*" th:src="@{/asset/file.svg}" class="h-7 w-7"/>
+                                                                </th:block>
+                                                                <p th:text="${file.name}" class="ml-2"></p>
+                                                        </div>
+                                                        <p th:text="${file.last_updated}"></p>
+                                                        <th:block th:if="${file.size < 1000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size}"></p>
+                                                                        <th:block th:if="${file.size > 1}">
+                                                                                <p>octets</p>
+                                                                        </th:block>
+                                                                        <th:block th:if="${file.size <= 1}">
+                                                                                <p>octet</p>
+                                                                        </th:block>
+                                                                </div>
+                                                        </th:block>
+                                                        <th:block th:if="${file.size > 1000 && file.size < 1000000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size/1000}"></p>
+                                                                        <p>Ko</p>
+                                                                </div>
+                                                        </th:block>
+                                                        <th:block th:if="${file.size > 1000000}">
+                                                                <div class="flex">
+                                                                        <p th:text="${file.size/1000000}"></p>
+                                                                        <p>Mo</p>
+                                                                </div>
+                                                        </th:block>
+                                                </a>
+                                        </div>
+                                </th:block>
+                                <th:block th:if="${entries.key == 'file'}">
+                                        <pre class="ml-2 text-black whitespace-pre-wrap break-words w-full overflow-auto" th:text="${entries.value.content}"></pre>
+                                        <th:block th:insert="layout/infobar :: infobar"></th:block>
+                                </th:block>
+                        </div>    
+                </div>
+        </main>
+</body>
+</html>

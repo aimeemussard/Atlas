@@ -1,0 +1,2 @@
+My_meetic is a solo project aiming to develop a web application allowing users to meet other people using filters according to their hobbies/age/city. 
+It is fully developped in PHP and JS using the MVC architecture and OOP.

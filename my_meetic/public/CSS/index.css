@@ -1,0 +1,322 @@
+*{
+        margin : 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+}
+
+a{
+        text-decoration: none;
+}
+
+li, ul {
+        list-style: none;
+}
+
+header{
+        margin-top: 0;
+        height: 9vh;
+}
+
+main{
+        min-height: 90vh;
+}
+
+
+  /* NAVBAR */
+
+nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        z-index: 1;
+        background-color: rgb(251, 148, 163);
+        height: 7vh;
+        padding: 0px 25px 0px 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav:hover {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8vh;
+        padding: 5px 25px 0px 10px;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-img{
+        width: 2em;
+        border: none;
+        cursor: pointer;
+}
+
+        /* Login button*/
+
+nav>ul{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-top: 1.75em;
+}
+
+nav>ul>li:first-of-type{
+        position: absolute;
+        left: 3em;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        display: inline-block;
+}
+
+nav>ul>li:first-of-type:hover{
+        background-color: transparent;
+        border: none;
+}
+
+nav>ul>li:last-of-type{
+        position: absolute;
+        right: 3em;
+}
+
+nav>ul>li{
+        cursor: pointer;
+        user-select: none; 
+        display: inline-block;
+        padding: 6px 10px;
+        border: 2px solid white;
+        border-radius: 25px;
+        background-color: rgb(251, 148, 163);
+        transition: all 0.3s ease;
+}
+
+nav>ul>li:hover{
+        transform: scale(1.1);
+        border: 2px solid rgb(251, 148, 163);
+        border-radius: 25px;
+        background-color: white;
+}
+
+nav>ul>li:first-of-type>a{
+        font-size: 3em;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav>ul>li>a{
+        text-decoration: none;
+        color: gray;
+}
+
+/* FORM */
+
+#logout{
+        height: 0;
+}
+
+.main-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+}
+
+form{
+        width: 40vw;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+        -webkit-background-clip: text;
+        box-shadow: inset 0 0 20px 20px #ffffff;
+}
+
+.form-container{
+        display: flex;
+        justify-content: space-between;
+}
+
+.form-container>div{
+        width: 45%;
+}
+
+        /*Checkboxes*/
+
+input[type="checkbox"]:not(:checked), input[type="checkbox"]:checked, input[type="radio"]:not(:checked), input[type="radio"]:checked {
+        display: none;
+}
+
+input[type="checkbox"] + label, input[type="radio"] + label{
+        cursor: pointer;
+        user-select: none;
+        display: inline-block;
+        margin: 0.5em;
+        padding: 10px;
+        min-width: 2em;
+        border: 2px solid pink;
+        border-radius: 25px;
+        color: gray;
+        background-color: transparent;
+        transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
+        border: 2px solid pink;
+        color: whitesmoke;
+        background-color: pink;
+        transform: scale(1.15);
+}
+
+input[type="checkbox"]:hover + label, input[type="radio"]:hover + label {
+        transform: scale(1.15);
+        border: 2px solid rgb(200, 50, 100);
+}
+
+        /*Select*/
+
+.date_picker{
+        display: flex;
+        justify-content: space-between;
+}
+
+select{
+        font-size: 100%;
+        padding: 0.8em 0.4em 0.8em 0.4em;
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        background-color: transparent;
+        border-radius: 25px;
+        width: 30%;
+        color: rgb(100, 100, 100);
+        transition: all 0.3s ease;
+}
+
+.date_picker>select:first-of-type{
+        width: 15%;
+        padding: 0.8em 0.4em 0.8em 0.4em;
+}
+
+.date_picker>select:last-of-type{
+        width: 20%;
+        padding: 0.8em 0.4em 0.8em 0.4em;
+}
+
+        /*Input file*/
+        input[type="file"] {
+                display: none;
+        }
+        
+        .file-upload {
+                outline: none;
+                display: inline-block;
+                margin: 0.5em 0em;
+                padding: 0.8em 0em 0.8em 0.8em;
+                cursor: pointer;
+                border: 2px solid rgb(200, 200, 200);
+                background-color: transparent;
+                border-radius: 20px;
+                border-radius: 25px;
+                width: 30%;
+                transition: all 0.3s ease;
+        }
+
+        /*Input*/
+.input-container input, .input-container-login input {
+        font-size: 100%;
+        margin: 0.5em 0em;
+        padding: 0.8em 0em 0.8em 0.8em;
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        background-color: transparent;
+        border-radius: 25px;
+        width: 100%;
+        transition: all 0.3s ease;
+}
+
+.input-container, select>option {
+        margin: 0.5em 0;
+        position: relative;
+        width: 96%;
+}
+
+.input-container label, .input-container-login label {
+        font-size: 100%;
+        position: absolute;
+        top: 10px;
+        padding: 0.8em;
+        margin-left: 1em;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        color: rgb(100, 100, 100);
+}
+
+.input-container>input:hover, select:hover{
+        border-color: rgb(200, 50, 100);
+}
+
+.input-container :is(input:focus, input:not(:placeholder-shown))~label, .input-container-login :is(input:focus, input:not(:placeholder-shown))~label {
+        background-color: white;
+        transform: translateY(-50%) scale(.9);
+        margin: 0em;
+        margin-left: 1.3em;
+        padding: 0.4em;
+}
+
+.input-container :is(input:focus, input:not(:placeholder-shown)), select :is(select:checked) {
+        border-color: rgb(200, 50, 100);
+}
+
+input[type='submit']{
+        cursor: pointer;
+        height: 50px;
+        width: 80%;
+        font-size: 1.25em;
+        outline: none;
+        padding: 0.5em;
+        margin: 0em 0em 1em 2.4em;
+        border: 2px solid lightpink;
+        border-radius: 30px;
+        color: whitesmoke;
+        background-color: lightpink;
+        transition: all 0.3s ease;
+}
+
+input[type='submit']:hover{
+        transform: scale(1.05);
+        border: 2px solid rgb(251, 148, 163);
+}
+
+/*ACCOUNT*/
+
+.profile-picture{
+        width: 10em;
+        border-radius: 50%;
+        margin: 0em 2em;
+}
+
+.main-div-container{
+        display: flex;
+        align-items:end;
+        height: 20vh;
+}
+
+.main-div-container>div>div:first-of-type, .main-div-container>div>div:nth-child(2){
+        display: flex;
+        align-items: center;
+}
+
+.main-div-container>div>div:first-of-type{
+        justify-content: space-between;
+}
+
+.main-div-container>div{
+        width: 30%;
+}
+
+textarea{
+        width: 20vw;
+}
