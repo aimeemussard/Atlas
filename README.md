@@ -1,8 +1,6 @@
 # 🗺️ Atlas
 
-## 📝 Description
-
-Atlas est une application Java développée à l'aide de [**Spring Boot**](https://spring.io/projects/spring-boot) pour le back-end, [**Thymeleaf**](https://www.thymeleaf.org/) comme moteur de templates, et [**Tailwind CSS**](https://tailwindcss.com/) pour le front-end.
+Atlas est une application Java développée à l'aide de [**Spring Boot**](https://spring.io/projects/spring-boot) pour le back-end, [**Thymeleaf**](https://www.thymeleaf.org/) comme moteur de templates, et [**Tailwind CSS**](https://tailwindcss.com/) pour le front-end. Elle offre un système moderne et réactif d’indexation et de navigation de fichiers, avec tri, recherche et aperçu, pensé pour allier performance et élégance.
 
 ---
 
