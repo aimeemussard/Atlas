@@ -51,7 +51,7 @@ npm install
 Une fois le dépôt cloné et toutes les dépendances installées, vous devez créer un fichier .env :
 
 ```bash 
-        ROOT="absolute/path/to/H5AI/folder"
+ROOT="absolute/path/to/H5AI/folder"
 ```
 
 Ensuite vous pouvez lancer le server :
