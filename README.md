@@ -31,7 +31,7 @@ sudo apt install default-jre
 
 ## 🚀 Installation
 
-### 1. Cloner le projet :
+### 1. Cloner le dépôt :
 
 ```bash
 git clone https://github.com/aimeemussard/Atlas
