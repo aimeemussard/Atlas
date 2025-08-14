@@ -8,10 +8,9 @@ Atlas est une application Java développée à l'aide de [**Spring Boot**](https
 
 Il est recommandé d'avoir installé Node.js et Java au préalable, si ce n'est pas déjà fait vous pouvez:
 
-Sur MacOs/Windows:
-- Installer [Java](https://www.java.com/fr/download/manual.jsp), version recommandée : 24.0.1+
+- Installer [Java](https://www.java.com/fr/download/manual.jsp) sur MacOs/Windows, version recommandée : 24.0.1+
 
-Sur Ubuntu:
+- Installer Java sur Ubuntu:
 
 ```bash
 sudo apt install default-jre
